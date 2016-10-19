@@ -1,5 +1,5 @@
 {
-  "name": "irebase",
+  "name": "gulp-irebase",
   "version": "1.0.0",  
   "description": "rebase css font/image urls",
   "main": "index.js",
