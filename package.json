@@ -1,0 +1,28 @@
+{
+  "name": "irebase",
+  "version": "1.0.0",  
+  "description": "rebase css font/image urls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sakhunzai/gulp-irebase.git"
+  },
+  "keywords": [
+    "gulp",
+    "rebase"
+  ],
+  "author": "sakhunzai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sakhunzai/gulp-irebase/issues"
+  },
+  "homepage": "https://github.com/sakhunzai/gulp-irebase#readme",
+  "dependencies": {
+      "gulp-util": "^3.0.7",
+      "through2": "^2.0.1",
+      "unquote": "^1.1.0"
+  },
+}
