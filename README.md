@@ -34,9 +34,11 @@ Type: `Array`
  var options={
  	srcDir: null,
 	destDir: "./",
-	
+	search: /regxp/ig,
+	replace:function(file){
+		return function(url,src){
+			return newpath
+		}
+	}
  }
 ```
-
-
-
