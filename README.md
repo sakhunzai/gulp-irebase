@@ -43,12 +43,12 @@ gulp.task('default', function() {
 		Type `Regexp`
 
 
-#### Example
+#### defaults
 
 Type: `Array`
 
 ```js
- var options= {
+ var defaults= {
      srcDir: null,
      destDir: './',
      search:/url\((.*?)\)/ig,
