@@ -20,7 +20,9 @@ module.exports = function(opts) {
                 return 'url("'+path.relative(opts.destDir,getDir(file,unquote(src)))+'")';
             };
         },
-
+        rebaseUrls: true,
+        removeMapUrls: true,
+        mapRegexp: /\/\*#\s*sourceMappingURL\s*.*?\*\//ig
     }
 
     opts= extend(defaults,opts);
@@ -29,17 +31,35 @@ module.exports = function(opts) {
         var dir=opts.srcDir;
         if(typeof opts.srcDir=='function'){
             dir=opts.srcDir(file,opts);
-        }else if(opts.srcDir==null)
-            dir=path.parse(file.path).dir;
+        }else if(opts.srcDir==null){
+            dir=path.dirname(file.path);
+        }
 
         return path.join(dir, src);
     }
 
     function _rebase(file){
-        return String(file.contents)
-            .replace(opts.search,opts.replace(file));
+        var data = String(file.contents);
+        
+        if(opts.rebaseUrls){
+            data=data.replace(opts.search,opts.replace(file))
+        }
+        
+        if(opts.removeMapUrls){
+            data=data.replace(opts.mapRegexp,'');
+        }
+        
+        return data;
     }
 
+    function _cleanMapUrl(data)
+    {
+        if(opts.removeMapUrl==true){
+            return data.replace(opts.mapRegexp,'');
+        }
+        return data;
+    }
+    
     return through.obj(function(file, encoding, callback) {
         if(file.isNull()) return  callback(null,file);
 
