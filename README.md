@@ -45,8 +45,6 @@ gulp.task('default', function() {
 
 #### defaults
 
-Type: `Array`
-
 ```js
  var defaults= {
      srcDir: null,
