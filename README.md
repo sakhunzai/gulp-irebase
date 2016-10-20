@@ -24,21 +24,45 @@ gulp.task('default', function() {
 
 ## API
 
-### rebase(options)
 
-#### options
+`irebase(options)`
+* `options`: (since 1.0.0)
+    * `srcDir`: (default `null`) path to source directory 
+		Type `Function`, `Null`, `String`
+	* `destDir`: (default `./`)  path to destination directory
+		Type `String`
+	* `search`: (default `/url\((.*?)\)/ig`) Regexp to find and replace urls
+		Type `Regexp`
+	* `replace`: (default `Function`) Replace function takes `file` as argument and `String` or `Function` 
+		Type `Function`	
+    * `rebaseUrls`: (default `true`) Adjust any relative URL to the location of the target file.
+		Type `Boolean`
+    * `removeMapUrls`: (default `true`) Remove source map ulrs in target file.
+		Type `Boolean`
+	* `mapRegexp`: (default `/\/\*#\s*sourceMappingURL\s*.*?\*\//ig`) Regexp to remove sourcemap urls
+		Type `Regexp`
+
+
+#### Example
 
 Type: `Array`
 
 ```js
- var options={
- 	srcDir: null,
-	destDir: "./",
-	search: /regxp/ig,
-	replace:function(file){
-		return function(url,src){
-			return newpath
-		}
-	}
+ var options= {
+     srcDir: null,
+     destDir: './',
+     search:/url\((.*?)\)/ig,
+     replace:function(file){
+         return function(url,src){
+             return 'url("'+path.relative(opts.destDir,getDir(file,unquote(src)))+'")';
+         };
+     },
+     rebaseUrls: true,
+     removeMapUrls: true,
+     mapRegexp: /\/\*#\s*sourceMappingURL\s*.*?\*\//ig
  }
 ```
+## License
+
+[MIT](http://en.wikipedia.org/wiki/MIT_License) @ sakhunzai
+
