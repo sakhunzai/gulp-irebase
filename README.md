@@ -31,7 +31,7 @@ gulp.task('default', function() {
 		Type `Function`, `Null`, `String`
 	* `destDir`: (default `./`)  path to destination directory
 		Type `String`
-	* `search`: (default `/url\((.*?)\)/ig`) Regexp to find and replace urls
+	* `search`: (default `/url\((((?!http(s?)\:).)*?)\)/ig`) Regexp to find and replace urls( local references)
 		Type `Regexp`
 	* `replace`: (default `Function`) Replace function takes `file` as argument and `String` or `Function` 
 		Type `Function`	
@@ -49,7 +49,7 @@ gulp.task('default', function() {
   {
      srcDir: null,
      destDir: './',
-     search:/url\((.*?)\)/ig,
+     search:/url\((((?!http(s?)\:).)*?)\)/ig,
      replace:function(file){
          return function(url,src){
              return 'url("'+path.relative(opts.destDir,getDir(file,unquote(src)))+'")';
