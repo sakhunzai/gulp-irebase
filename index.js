@@ -14,7 +14,7 @@ module.exports = function(opts) {
     var defaults= {
         srcDir: null,
         destDir: './',
-        search:/url\((.*?)\)/ig,
+        search:/url\((((?!http(s?)\:).)*?)\)/ig,
         replace:function(file){
             return function(url,src){
                 return 'url("'+path.relative(opts.destDir,getDir(file,unquote(src)))+'")';
